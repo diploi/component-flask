@@ -28,4 +28,4 @@ EXPOSE 8000
 ENV PORT=8000
 ENV HOST="0.0.0.0"
 
-CMD ["uv", "run", "--frozen", "src/main.py"]
+CMD ["uv", "run", "--frozen", "gunicorn","-w", "4", "-b", "0.0.0.0:8000", "src.main:app"]
