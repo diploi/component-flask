@@ -1,13 +1,13 @@
 diploiVersion: v1.0
 type: component
-name: Python
-description: Official Python component for Diploi
+name: Flask
+description: Official Flask component for Diploi
 
 hosts:
-  - name: Python
+  - name: Flask
     identifier: app
     urlFormat: '[label].[default-domain]'
 
 images:
   - identifier: app
-    prebuildImage: ghcr.io/diploi/component-python:[tag]
+    prebuildImage: ghcr.io/diploi/component-flask:[tag]
