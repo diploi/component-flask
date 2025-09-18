@@ -47,8 +47,6 @@ spec:
           volumeMounts:
             - name: app-mount
               mountPath: /app
-            - name: app-backup
-              mountPath: /tmp/app-backup
       {{- end }}
       containers:
         - name: app
@@ -62,22 +60,16 @@ spec:
               value: {{ .value | quote }}
             {{- end }}
           {{- if eq .Values.stage "development"}}
-          command: ["/usr/local/bin/nodemon"]
-          args: ["--delay", "1", "--watch", "pyproject.toml", "--exec", "uv run --isolated flask --app src/main.py run --host=0.0.0.0 --port=8000 --debug"]
           workingDir: /app/{{ .Values.identifier }}
           {{- end }}
           volumeMounts:
             {{- if hasKey .Values.storage "code" }}
             - name: app-mount
               mountPath: /app
-            {{- end }}
-            - name: app-backup
-              mountPath: /tmp/app-backup
+            {{- end }}        
       volumes:
         {{- if hasKey .Values.storage "code" }}
         - name: app-mount
           hostPath:
             path: {{ .Values.storage.code.hostPath }}
         {{- end }}
-        - name: app-backup
-          emptyDir: {}
