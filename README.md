@@ -23,7 +23,7 @@ For more details, check https://diploi.com/blog/hosting_flask_apps
 During development, the container installs Node.js and `nodemon` to enable automatic reloads when files change. The development server is started with:
 
 ```sh
-nodemon --delay 1 --watch pyproject.toml --exec uv run --isolated flask --app src/main.py run --host=0.0.0.0 --port=8000 --debug
+nodemon --delay 1 --watch "pyproject.toml" --watch ".venv/lib/*" --watch ".venv/lib64/*" --watch "src"  --ext "py" --exec "uv run --isolated flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug"
 ```
 
 This will:
