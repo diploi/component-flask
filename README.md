@@ -16,7 +16,7 @@
 4. Choose **Create Repository** to generate a new GitHub repo
 5. Finally, click **Launch Stack**
 
-Full guide at http://diploi.com/blog/hosting_fastapi_apps
+Full guide at http://diploi.com/blog/hosting_flask_apps
 
 ### Development
 
