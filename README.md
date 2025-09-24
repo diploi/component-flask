@@ -16,6 +16,8 @@
 4. Choose **Create Repository** to generate a new GitHub repo
 5. Finally, click **Launch Stack**
 
+Full guide at http://diploi.com/blog/hosting_fastapi_apps
+
 ### Development
 
 During development, the container installs Node.js and `nodemon` to enable automatic reloads when files change. The development server is started with:
