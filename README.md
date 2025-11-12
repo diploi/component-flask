@@ -43,6 +43,7 @@ This uses the Gunicorn to serve your application on port 8000.
 
 ## Links
 
+- [Adding Flask to a project](https://docs.diploi.com/building/components/flask)
 - [Flask documentation](https://flask.palletsprojects.com/en/stable/)
 - [Python documentation](https://docs.python.org/)
 - [uv documentation](https://docs.astral.sh/uv/)
