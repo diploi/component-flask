@@ -3,11 +3,13 @@ type: component
 name: Flask
 description: Official Flask component for Diploi
 
+supportsAdditionalHosts: { serviceName: 'app'}
+
 hosts:
   - name: Flask
     identifier: app
-    urlFormat: '[label].[default-domain]'
+    port: 8000
 
 images:
   - identifier: app
-    prebuildImage: ghcr.io/diploi/component-flask:[tag]
+    prebuildImage: public.ecr.aws/p8t2q7f4/diploi/component-flask:[tag]
