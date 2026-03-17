@@ -41,5 +41,5 @@ CMD ["/usr/local/bin/nodemon", \
     "--watch", ".venv/lib64/*", \
     "--watch", "src", \ 
     "--ext", "py", \
-    "--exec", "uv run --isolated flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug", \
+    "--exec", "sh -c 'if [ -f pyproject.toml ]; then uv run --isolated --with . flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug; elif [ -f requirements.txt ]; then uv run --isolated --with-requirements requirements.txt flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug; else uv run --isolated flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug; fi'", \
     "--"]
