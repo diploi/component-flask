@@ -37,6 +37,7 @@ ENV HOST="0.0.0.0"
 CMD ["/usr/local/bin/nodemon", \
     "--delay", "1", \
     "--watch", "pyproject.toml", \
+    "--watch", "requirements.txt", \
     "--watch", ".venv/lib/*", \ 
     "--watch", ".venv/lib64/*", \
     "--watch", "src", \ 
