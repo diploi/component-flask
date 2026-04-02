@@ -20,23 +20,17 @@ Full guide at https://diploi.com/blog/hosting_flask_apps
 
 ### Development
 
-During development, the container installs Node.js and `nodemon` to enable automatic reloads when files change. The development server is started with:
-
 ```sh
-nodemon --delay 1 --watch "pyproject.toml" --watch "requirements.txt" --watch ".venv/lib/*" --watch ".venv/lib64/*" --watch "src" --ext "py" --exec "sh -c 'if [ -f pyproject.toml ]; then uv run --isolated --with . flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug; elif [ -f requirements.txt ]; then uv run --isolated --with-requirements requirements.txt flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug; else uv run --isolated flask --app src/main.py run --host=0.0.0.0 --port=8000 --no-reload --debug; fi'"
+uv run flask --app src/main.py run --host=0.0.0.0 --port=8000 --debug
 ```
 
 This will:
-- Watch for changes in `src`, `pyproject.toml`, `requirements.txt`, and the virtual environment, restarting the server automatically
-- Detect the dependency file in use and run Flask accordingly:
-  - If `pyproject.toml` is present: installs the local package with `--with .`
-  - If `requirements.txt` is present: installs dependencies with `--with-requirements requirements.txt`
-  - Otherwise: runs Flask in a plain isolated environment
+- Watch for changes and restart the server automatically
 - Makes the app available on all network interfaces at port 8000, with debug mode enabled
 
 ### Production
 
-Builds a production-ready image. During the build, dependencies are installed with `uv sync`. When the container starts, it runs:
+Builds a production-ready image. During the build, dependencies are installed with `uv sync` or `uv pip install`. When the container starts, it runs:
 
 ```sh
 uv run --frozen gunicorn -w 4 -b 0.0.0.0:8000 src.main:app
